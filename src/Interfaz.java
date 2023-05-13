@@ -22,7 +22,9 @@ public class Interfaz extends JFrame{
     private JButton REMOVEButton;
     private JButton btnMostrar;
     private JTextArea areaMostrar;
-    private JComboBox comboBox1;
+    private JComboBox comboBoxBusqueda;
+    private JButton btnBuscar;
+    private JTextArea areaBusqueda;
     private JTextArea areaQuemar;
     private TrackingSystem mtracking = new TrackingSystem();
 
@@ -73,6 +75,28 @@ public class Interfaz extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 areaMostrar.setText(mtracking.getPackages().toString());
+            }
+        });
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+             String eleccion = String.valueOf(comboBoxBusqueda.getSelectedItem());
+             if (eleccion.equals("Direccion destinatario")){
+                 areaBusqueda.setText("");
+
+             }else if (eleccion.equals("Numero de seguimiento")){
+                 areaBusqueda.setText("");
+
+                }else if (eleccion.equals("Ciudad")){
+                 areaBusqueda.setText("");
+
+                }else if (eleccion.equals("Estado")){
+                 areaBusqueda.setText("");
+
+                }else if (eleccion.equals("Codigo postal")){
+                 areaBusqueda.setText("");
+
+             }
             }
         });
     }
