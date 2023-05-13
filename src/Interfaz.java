@@ -22,8 +22,8 @@ public class Interfaz extends JFrame{
     private JButton REMOVEButton;
     private JButton btnMostrar;
     private JTextArea areaMostrar;
+    private JComboBox comboBox1;
     private JTextArea areaQuemar;
-
     private TrackingSystem mtracking = new TrackingSystem();
 
     public Interfaz() {
@@ -40,13 +40,19 @@ public class Interfaz extends JFrame{
         btnCrearNuevo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(fieldStreet.getText().isBlank()|| fieldCity.getText().isBlank()|| fieldState.getText().isBlank()||fieldZipCode.getText().isBlank()
+                || rFieldStreet.getText().isBlank()|| rFieldCity.getText().isBlank()||rFieldState.getText().isBlank()|| rFieldZipCode.getText().isBlank()){
+                    JOptionPane.showMessageDialog(null, "Los campos estan vacios");
+                }else{
+                    Address sa = new Address(fieldStreet.getText(),fieldCity.getText(),fieldState.getText(),fieldZipCode.getText());
+                    Address ra = new Address(rFieldStreet.getText(),rFieldCity.getText(),rFieldState.getText(),rFieldZipCode.getText());
+                    Package pkg = new Package(sa,ra,LocalDate.now());
+                    mtracking.addPackage(pkg);
 
-                Address sa = new Address(fieldStreet.getText(),fieldCity.getText(),fieldState.getText(),fieldZipCode.getText());
-                Address ra = new Address(rFieldStreet.getText(),rFieldCity.getText(),rFieldState.getText(),rFieldZipCode.getText());
-                Package pkg = new Package(sa,ra,LocalDate.now());
-                mtracking.addPackage(pkg);
-                JOptionPane.showMessageDialog(null, "Creado con exito");
-                Limpiar();
+                    JOptionPane.showMessageDialog(null, "Creado con exito");
+                    Limpiar();
+                }
+
             }
         });
         REMOVEButton.addActionListener(new ActionListener() {
